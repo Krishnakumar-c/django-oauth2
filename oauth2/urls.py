@@ -17,8 +17,14 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include, url
 
+api_url_patterns = [
+    url(r'^', include('users.urls')),
+    url(r'^', include('customer.urls')),
+]
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'^api/hello', include('customer.urls')),
     url(r'^oauth2/', include('oauth2_provider.urls', namespace='oauth2_provider')),
+    url(r'^api/v1/', include(api_url_patterns)),
+
 ]
